@@ -60,6 +60,10 @@ public class GammaFunction extends JFrame {
                 9.9843695780195716e-6, 1.5056327351493116e-7
         };
 
+        if (x <= 0 && x == Math.floor(x)) {
+            throw new IllegalArgumentException("Γ(x) is undefined for non-positive integers.");
+        }
+
         if (x < 0.5) {
             return Math.PI / (Math.sin(Math.PI * x) * gamma(1 - x));
         }
