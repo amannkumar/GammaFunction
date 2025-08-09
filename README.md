@@ -38,3 +38,40 @@ To run the GUI:
     3. Enter a real number x > 0 in the input box and click "Compute Γ(x)".
     4. The result will appear in the output area.
 
+--------------------------------------
+5. RUNNING TESTS
+--------------------------------------
+JUnit 4 test cases are provided in `GammaFunctionTest.java`.
+
+To run tests in IntelliJ:
+    - Right-click the test file and choose "Run All Tests".
+
+From the command line (if JUnit jar is in the classpath):
+    javac -cp .:junit-4.13.1.jar GammaFunction.java GammaFunctionTest.java
+    java -cp .:junit-4.13.1.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore GammaFunctionTest
+
+--------------------------------------
+6. LOGGING
+--------------------------------------
+All calculations are logged in "gamma_log.txt" in the working directory.
+
+Log entries include:
+    [YYYY-MM-DD HH:MM:SS] INPUT: <x> | RESULT: <value>
+    [YYYY-MM-DD HH:MM:SS] INPUT: <x> | ERROR: <message>
+
+--------------------------------------
+7. LIMITATIONS
+--------------------------------------
+- Does not handle complex numbers (x with imaginary parts).
+- Very large positive x may produce overflow due to limitations of double precision.
+
+--------------------------------------
+8. REFERENCES
+--------------------------------------
+1. Lanczos, C. "A precision approximation of the gamma function."
+2. Abramowitz, M., and Stegun, I.A. "Handbook of Mathematical Functions."
+3. SOEN 6011 Course Material – Concordia University.
+
+--------------------------------------
+END OF README
+--------------------------------------
