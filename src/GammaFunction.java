@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
@@ -13,6 +12,7 @@ public class GammaFunction extends JFrame {
     private static final String LOG_FILE = "gamma_log.txt";
 
     public GammaFunction() {
+        final String INPUT_LABEL = "INPUT: ";
         setTitle("Gamma Function Calculator");
         setSize(420, 250);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -40,15 +40,16 @@ public class GammaFunction extends JFrame {
                     throw new IllegalArgumentException("Error: Input must be a real number greater than 0.");
                 }
                 double result = gamma(x);
+
                 String output = String.format("Γ(%.8f) = %.8f", x, result);
                 outputArea.setText(output);
-                log("INPUT: " + x + " | RESULT: " + result);
+                log(INPUT_LABEL + x + " | RESULT: " + result);
             } catch (IllegalArgumentException ex) {
                 outputArea.setText("Error: " + ex.getMessage());
-                log("INPUT: " + inputText + " | ERROR: " + ex.getMessage());
+                log(INPUT_LABEL + inputText + " | ERROR: " + ex.getMessage());
             } catch (Exception ex) {
                 outputArea.setText("Error: Invalid input. Please enter a valid real number.");
-                log("INPUT: " + inputText + " | ERROR: Invalid input.");
+                log(INPUT_LABEL + inputText + " | ERROR: Invalid input.");
             }
         });
     }
@@ -79,11 +80,12 @@ public class GammaFunction extends JFrame {
     }
 
     public static void log(String message) {
+        final String LOG_WRITE_ERROR = "Failed to write to log file.";
         try (PrintWriter out = new PrintWriter(new FileWriter(LOG_FILE, true))) {
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             out.println("[" + timestamp + "] " + message);
         } catch (IOException e) {
-            System.err.println("Failed to write to log file.");
+            System.err.println(LOG_WRITE_ERROR);
         }
     }
 
